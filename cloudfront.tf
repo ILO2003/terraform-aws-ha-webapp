@@ -13,10 +13,12 @@ resource "aws_cloudfront_vpc_origin" "cloudfront-alb" {
   }
 }
 
+#this is already existing aws policy and we are reusing this
 data "aws_cloudfront_cache_policy" "caching_disabled" {
   name = "Managed-CachingDisabled"
 }
 
+#CloudFront distribution with no caching to verify load balancing
 resource "aws_cloudfront_distribution" "alb-distribution" {
   origin {
     domain_name = aws_lb.ALB.dns_name

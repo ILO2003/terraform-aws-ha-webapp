@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 6.0"
-    }
-  }
-
-}
-provider "aws" {
-  region = var.aws_region
-}
-
 resource "aws_vpc" "webapp-vpc" {
   cidr_block = var.cidr_block
   tags = {
@@ -18,6 +5,7 @@ resource "aws_vpc" "webapp-vpc" {
   }
 }
 
+#I am not using public subnet but created just to demonstrate my previous project as a code
 resource "aws_subnet" "public-subnet-az1" {
   vpc_id            = aws_vpc.webapp-vpc.id
   cidr_block        = "10.20.1.0/24"
