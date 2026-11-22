@@ -36,6 +36,7 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
+#My own launch template to spin up the website specifying user data.
 resource "aws_launch_template" "ha-webapp-template" {
   name                                 = "webapp-template"
   image_id                             = "ami-0f71b90bee7050a75"
@@ -66,6 +67,8 @@ resource "aws_autoscaling_group" "app_asg" {
 
   }
 }
+
+#In case CPU utilization goes over 75% -> spin up one more EC2 instance
 resource "aws_autoscaling_policy" "app-asg-policy" {
   autoscaling_group_name = aws_autoscaling_group.app_asg.name
   name                   = "app-scaling-policy"

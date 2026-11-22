@@ -25,7 +25,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "sse-conf" {
     }
   }
 }
-
+#Push simple text document to my s3 bucket.
 resource "aws_s3_object" "app-info" {
   bucket = aws_s3_bucket.S3-bucket.id
   key    = "app-info.txt"

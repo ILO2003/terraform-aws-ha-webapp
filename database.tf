@@ -7,6 +7,7 @@ resource "aws_db_subnet_group" "main-db-sg" {
   }
 }
 
+#Using AWS manager Secrets to automatically manage my password for DB.
 resource "aws_db_instance" "main-db-instance" {
   allocated_storage           = 20
   max_allocated_storage       = 50

@@ -1,3 +1,4 @@
+#Getting already exsiting prefix list to use CloudFront IPs only
 data "aws_ec2_managed_prefix_list" "cloudfront" {
   name = "com.amazonaws.global.cloudfront.origin-facing"
 }
@@ -10,6 +11,7 @@ resource "aws_security_group" "ALB-SG" {
     Name = "ALB-sec-group"
   }
 }
+#Internal facing ALB -> no longer internetfacing from last project.
 resource "aws_vpc_security_group_ingress_rule" "ALB-SG-INGRESS" {
   security_group_id = aws_security_group.ALB-SG.id
   prefix_list_id    = data.aws_ec2_managed_prefix_list.cloudfront.id
